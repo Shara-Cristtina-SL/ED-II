@@ -30,4 +30,9 @@ int nos(Arvore A);
 // Função para contar o número total de folhas na árvore(Q14.3)
 int folhas(Arvore A);
 
+// Função para calcular a altura da árvore binária(13.4)
+int altura(Arvore A);
+
+// Função para verificar se um item (x) existe na árvore binária (A) - (Q13.5)
+bool tem(Arvore A, int x);
 #endif // ARV_H

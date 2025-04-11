@@ -61,6 +61,29 @@ int folhas(Arvore A){
     }
 }
 
+// Função para calcular a altura da árvore binária(Q13.4)
+int altura(Arvore A){
+    if (A == NULL) {
+        return -1; // Altura de uma árvore vazia é -1
+    } else {
+        int altura_esquerda = altura(A->esq);
+        int altura_direita = altura(A->dir);
+        return 1 + std::max(altura_esquerda, altura_direita);
+    }
+}
+
+// Função para verificar se um item (x) existe na árvore binária (A) - (Q13)
+bool tem(Arvore A, int x){
+    if (A == NULL) {
+        return false; // Se a árvore (ou subárvore) é vazia, o item não está presente.
+    } else if (A->item == x) {
+        return true; // Se o item do nó atual é igual a x, encontramos o item.
+    } else {
+        // Caso contrário, procura recursivamente nas subárvores esquerda e direita.
+        return tem(A->esq, x) || tem(A->dir, x);
+    }
+}
+
 int main(){
     // Construindo uma árvore de exemplo
     Arvore n4 = arvore(NULL, 4, NULL);
@@ -84,5 +107,25 @@ int main(){
     int total_folhas = folhas(raiz);
     std::cout << "Total de folhas na árvore: " << total_folhas << std::endl;
     //Saída: 3
+
+    int h = altura(raiz);
+    std::cout << "Altura da árvore: " << h << std::endl;
+    //Saída: 2
+
+    int item_procurado = 3;
+    if (tem(raiz, item_procurado)) {
+        std::cout << "\nO item " << item_procurado << " está presente na árvore." << std::endl;
+    } else {
+        std::cout << "\nO item " << item_procurado << " não está presente na árvore." << std::endl;
+    }
+
+    item_procurado = 7;
+    if (tem(raiz, item_procurado)) {
+        std::cout << "O item " << item_procurado << " está presente na árvore." << std::endl;
+    } else {
+        std::cout << "O item " << item_procurado << " não está presente na árvore." << std::endl;
+    }
+
+    //Saída: 3 está presente na árvore e 7 não está.
     return 0;
 }
