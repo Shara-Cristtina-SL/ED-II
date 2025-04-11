@@ -72,7 +72,7 @@ int altura(Arvore A){
     }
 }
 
-// Função para verificar se um item (x) existe na árvore binária (A) - (Q13)
+// Função para verificar se um item (x) existe na árvore binária (A) - (Q13.5)
 bool tem(Arvore A, int x){
     if (A == NULL) {
         return false; // Se a árvore (ou subárvore) é vazia, o item não está presente.
