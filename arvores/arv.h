@@ -24,4 +24,7 @@ void percorre_inordem(Arvore A);
 // Função para percorrer a árvore em pós-ordem (esquerda, direita, raiz)
 void percorre_posordem(Arvore A);
 
+// Função para contar o número total de nós na árvore
+int nos(Arvore A);
+
 #endif // ARV_H

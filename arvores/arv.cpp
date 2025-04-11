@@ -1,7 +1,7 @@
+//Q13.1
 #include "arv.h"
 
-using namespace std;
-
+// Implementação da função para criar um novo nó
 Arvore arvore (Arvore e, int x, Arvore d){
     Arvore num = (struct arvore*)malloc(sizeof(struct arvore));
     num-> esq = e;
@@ -10,16 +10,15 @@ Arvore arvore (Arvore e, int x, Arvore d){
     return num;
 }
 
-// raiz, esquerda, direita (Pré-ordem)
+// Implementação da função para percorrer em pré-ordem
 void percorre_preordem (Arvore A){
     if(A != NULL){
-        cout << A->item << endl;
-        percorre_preordem
-    (A->esq);
-        percorre_preordem
-    (A->dir);
+        std::cout << A->item << std::endl;
+        percorre_preordem(A->esq);
+        percorre_preordem(A->dir);
     }
 }
+
 // Implementação da função para percorrer em in-ordem
 void percorre_inordem (Arvore A){
     if(A != NULL){
@@ -38,6 +37,17 @@ void percorre_posordem (Arvore A){
     }
 }
 
+// Função para contar o número total de nós na árvore (Q13.2)
+int nos(Arvore A){
+    if (A == NULL) {
+        return 0; // Se a árvore (ou subárvore) é vazia, não há nós.
+    } else {
+        // O total de nós é 1 (o nó atual) mais o número de nós na subárvore esquerda
+        // e o número de nós na subárvore direita.
+        return 1 + nos(A->esq) + nos(A->dir);
+    }
+}
+
 int main(){
     // Construindo uma árvore de exemplo
     Arvore n4 = arvore(NULL, 4, NULL);
@@ -53,6 +63,9 @@ int main(){
     percorre_inordem(raiz);
     std::cout << "\nPercurso Pós-ordem:" << std::endl;
     percorre_posordem(raiz);
+
+    int total_nos = nos(raiz);
+    std::cout << "\nTotal de nós na árvore: " << total_nos << std::endl;
 
     return 0;
 }
