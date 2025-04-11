@@ -39,4 +39,7 @@ bool tem(Arvore A, int x);
 // Função para verificar se a árvore binária A é estritamente binária (Q13.6)
 bool eb(Arvore A);
 
+// Função para verificar se duas árvores binárias A e B são iguais (Q13.7)
+bool igual(Arvore A, Arvore B);
+
 #endif // ARV_H

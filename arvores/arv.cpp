@@ -98,6 +98,7 @@ bool eb(Arvore A){
         return false;
     }
 }
+ //13.7 em outro arquivo
 
 int main(){
 // Construindo uma ÁRVORE ESTRITAMENTE BINÁRIA
@@ -138,7 +139,7 @@ int main(){
         / \
        2   3
       / \   \
-     4  5   6
+     4  5    6
     */
 
     std::cout << "Percurso Pré-ordem (Estrita):" << std::endl;
