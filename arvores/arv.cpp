@@ -48,6 +48,19 @@ int nos(Arvore A){
     }
 }
 
+// Função para contar o número total de folhas na árvore (Q13.3)
+int folhas(Arvore A){
+    if (A == NULL) {
+        return 0; // Se a árvore (ou subárvore) é vazia, não há folhas.
+    } else if (A->esq == NULL && A->dir == NULL) {
+        return 1; // Se o nó atual não tem filhos, é uma folha.
+    } else {
+        // O número de folhas é a soma do número de folhas na subárvore esquerda
+        // e o número de folhas na subárvore direita.
+        return folhas(A->esq) + folhas(A->dir);
+    }
+}
+
 int main(){
     // Construindo uma árvore de exemplo
     Arvore n4 = arvore(NULL, 4, NULL);
@@ -66,6 +79,10 @@ int main(){
 
     int total_nos = nos(raiz);
     std::cout << "\nTotal de nós na árvore: " << total_nos << std::endl;
+    //Saída: 6
 
+    int total_folhas = folhas(raiz);
+    std::cout << "Total de folhas na árvore: " << total_folhas << std::endl;
+    //Saída: 3
     return 0;
 }
