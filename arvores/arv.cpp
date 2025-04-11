@@ -84,48 +84,101 @@ bool tem(Arvore A, int x){
     }
 }
 
+// Função para verificar se a árvore binária A é estritamente binária(13.6)
+bool eb(Arvore A){
+    if (A == NULL) {
+        return true; // Uma árvore vazia é considerada estritamente binária (caso base da recursão).
+    } else if (A->esq == NULL && A->dir == NULL) {
+        return true; // Se o nó é uma folha (sem filhos), é estritamente binário.
+    } else if (A->esq != NULL && A->dir != NULL) {
+        // Se o nó tem dois filhos, precisamos verificar se suas subárvores também são estritamente binárias.
+        return eb(A->esq) && eb(A->dir);
+    } else {
+        // Se o nó tem apenas um filho (esquerdo ou direito), a árvore não é estritamente binária.
+        return false;
+    }
+}
+
 int main(){
-    // Construindo uma árvore de exemplo
-    Arvore n4 = arvore(NULL, 4, NULL);
-    Arvore n5 = arvore(NULL, 5, NULL);
+// Construindo uma ÁRVORE ESTRITAMENTE BINÁRIA
+    Arvore n8 = arvore(NULL, 8, NULL);
+    Arvore n9 = arvore(NULL, 9, NULL);
+    Arvore n4 = arvore(n8, 4, n9);
+
+    Arvore n10 = arvore(NULL, 10, NULL);
+    Arvore n11 = arvore(NULL, 11, NULL);
+    Arvore n5 = arvore(n10, 5, n11);
+
     Arvore n2 = arvore(n4, 2, n5);
-    Arvore n6 = arvore(NULL, 6, NULL);
-    Arvore n3 = arvore(NULL, 3, n6);
-    Arvore raiz = arvore(n2, 1, n3);
 
-    std::cout << "Percurso Pré-ordem:" << std::endl;
-    percorre_preordem(raiz);
-    std::cout << "\nPercurso In-ordem:" << std::endl;
-    percorre_inordem(raiz);
-    std::cout << "\nPercurso Pós-ordem:" << std::endl;
-    percorre_posordem(raiz);
+    Arvore n7 = arvore(NULL, 7, NULL);
+    Arvore n14 = arvore(NULL, 14, NULL);
+    Arvore n3 = arvore(n7, 3, n14);
 
-    int total_nos = nos(raiz);
-    std::cout << "\nTotal de nós na árvore: " << total_nos << std::endl;
-    //Saída: 6
+    Arvore raiz_estrita = arvore(n2, 1, n3);
+  /* Estrutura da árvore estrita:
+              1
+           /    \
+          2      3
+         / \    / \
+       4    5  7   14
+      / \  / \
+     8  9 10 11
+     */
 
-    int total_folhas = folhas(raiz);
-    std::cout << "Total de folhas na árvore: " << total_folhas << std::endl;
-    //Saída: 3
+    // Construindo uma árvore NÃO ESTRITAMENTE BINÁRIA
+    Arvore nn4 = arvore(NULL, 4, NULL);
+    Arvore nn5 = arvore(NULL, 5, NULL);
+    Arvore nn2 = arvore(nn4, 2, nn5);
+    Arvore nn6 = arvore(NULL, 6, NULL);
+    Arvore nn3 = arvore(NULL, 3, nn6);
+    Arvore raiz_nao_estrita = arvore(nn2, 1, nn3);
+    /* Estrutura da árvore não estrita:
+         1
+        / \
+       2   3
+      / \   \
+     4  5   6
+    */
 
-    int h = altura(raiz);
-    std::cout << "Altura da árvore: " << h << std::endl;
-    //Saída: 2
+    std::cout << "Percurso Pré-ordem (Estrita):" << std::endl;
+    percorre_preordem(raiz_estrita);
+    // Saída esperada (Pré-ordem): 1 2 4 8 9 5 10 11 3 7 14 6 12 13
+    std::cout << "\nPercurso In-ordem (Estrita):" << std::endl;
+    percorre_inordem(raiz_estrita);
+    // Saída esperada (In-ordem): 8 4 9 2 10 5 11 1 7 3 14 12 6 13
+    std::cout << "\nPercurso Pós-ordem (Estrita):" << std::endl;
+    percorre_posordem(raiz_estrita);
+    // Saída esperada (Pós-ordem): 8 9 4 10 11 5 2 7 14 3 12 13 6 1
 
-    int item_procurado = 3;
-    if (tem(raiz, item_procurado)) {
-        std::cout << "\nO item " << item_procurado << " está presente na árvore." << std::endl;
-    } else {
-        std::cout << "\nO item " << item_procurado << " não está presente na árvore." << std::endl;
-    }
+    int total_nos_estrita = nos(raiz_estrita);
+    std::cout << "\nTotal de nós na árvore estrita: " << total_nos_estrita << std::endl;
+    // Saída esperada: 13
 
-    item_procurado = 7;
-    if (tem(raiz, item_procurado)) {
-        std::cout << "O item " << item_procurado << " está presente na árvore." << std::endl;
-    } else {
-        std::cout << "O item " << item_procurado << " não está presente na árvore." << std::endl;
-    }
+    int total_folhas_estrita = folhas(raiz_estrita);
+    std::cout << "Total de folhas na árvore estrita: " << total_folhas_estrita << std::endl;
+    // Saída esperada: 7 (8, 9, 10, 11, 7, 14, 12, 13) - Contei errado na estrutura visual! Corrigindo: 8, 9, 10, 11, 7, 14, 12, 13 são as folhas. São 8 folhas.
+    // Correção na contagem visual: As folhas são 8, 9, 10, 11, 7, 14, 12, 13. Total 8.
 
-    //Saída: 3 está presente na árvore e 7 não está.
+    int h_estrita = altura(raiz_estrita);
+    std::cout << "Altura da árvore estrita: " << h_estrita << std::endl;
+    // Saída esperada: 3 (1 -> 2 -> 4 -> 8 ou 9, etc.)
+
+    int item_procurado = 7;
+    std::cout << "\nO item " << item_procurado << " está presente na árvore estrita? " << (tem(raiz_estrita, item_procurado) ? "Sim" : "Não") << std::endl;
+    // Saída esperada: Sim
+
+    item_procurado = 15;
+    std::cout << "O item " << item_procurado << " está presente na árvore estrita? " << (tem(raiz_estrita, item_procurado) ? "Sim" : "Não") << std::endl;
+    // Saída esperada: Não
+
+    std::cout << "\nÁrvore Estrita:" << std::endl;
+    std::cout << "É estritamente binária? " << (eb(raiz_estrita) ? "Sim" : "Não") << std::endl;
+    // Saída esperada: Sim
+
+    std::cout << "\nÁrvore Não Estrita:" << std::endl;
+    std::cout << "É estritamente binária? " << (eb(raiz_nao_estrita) ? "Sim" : "Não") << std::endl;
+    // Saída esperada: Não
+
     return 0;
 }

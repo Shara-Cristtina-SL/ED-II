@@ -35,4 +35,8 @@ int altura(Arvore A);
 
 // Função para verificar se um item (x) existe na árvore binária (A) - (Q13.5)
 bool tem(Arvore A, int x);
+
+// Função para verificar se a árvore binária A é estritamente binária (Q13.6)
+bool eb(Arvore A);
+
 #endif // ARV_H
