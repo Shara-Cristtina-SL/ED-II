@@ -4,13 +4,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-
+#include <cctype> // Para isdigit
+#include <stdexcept> // Para std::invalid_argument
+#include <iostream>
+#include <string>
 // Definição da estrutura do nó da árvore
 typedef struct arvore {
     struct arvore *esq;
     int item;
     struct arvore *dir;
 } *Arvore;
+
+// Definição da struct para árvore de expressão aritmética (strings para item)
+typedef struct arvore_expr {
+    struct arvore_expr *esq;
+    std::string item;
+    struct arvore_expr *dir;
+} *ArvoreExpr;
 
 // Função para criar um novo nó da árvore
 Arvore arvore(Arvore esq, int item, Arvore dir);
@@ -42,4 +52,6 @@ bool eb(Arvore A);
 // Função para verificar se duas árvores binárias A e B são iguais (Q13.7)
 bool igual(Arvore A, Arvore B);
 
+// Função para avaliar uma expressão aritmética representada por uma árvore binária(Q13.8)
+int valor(Arvore A);
 #endif // ARV_H
