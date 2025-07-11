@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>  // Adicionado para malloc e free
+#include <stdlib.h>  
 #include "lista.h"
 #include "fila.h"
 
@@ -64,13 +64,13 @@ void ts(Lista Adj[], int n) {
 
 int main() {
     // Exercício 15.1
-    Lista Adj[6];  // Definindo explicitamente o tamanho
+    Lista Adj[6];  // tamanho
     
-    // Construção das listas de adjacência passo a passo
+    // Construção das listas de adjacência 
     Adj[0] = no(1, no(2, no(3, NULL)));    // 0 → 1, 2, 3
     Adj[1] = no(0, no(3, NULL));            // 1 → 0, 3
     Adj[2] = no(0, no(3, no(4, NULL)));     // 2 → 0, 3, 4
-    // Para o vértice 3, vamos construir em etapas para evitar muitos parênteses
+    // Para o vértice 3
     Lista temp = no(5, NULL);
     temp = no(2, temp);
     temp = no(1, temp);
