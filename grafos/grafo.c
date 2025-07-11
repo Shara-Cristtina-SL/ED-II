@@ -63,7 +63,7 @@ void ts(Lista Adj[], int n) {
 }
 
 int main() {
-    // Exemplo de grafo do exercício 15.1 - corrigido
+    // Exercício 15.1
     Lista Adj[6];  // Definindo explicitamente o tamanho
     
     // Construção das listas de adjacência passo a passo
